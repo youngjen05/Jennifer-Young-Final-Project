@@ -1,0 +1,107 @@
+// Word list: 30 Christmas-themed words
+const words = [
+  "SNOWY", "GIFTS", "HOLLY", "TREES", "LIGHT", "STARS", "JOLLY", "BELLS",
+  "CANDY", "FROST", "SLEET", "ANGEL", "SANTA", "CAROL", "MERRY", "ELVES",
+  "MAGIC", "PEACE", "JESUS", "BERRY", "CHEER", "GLORY", "CLAUS", "LIGHT"
+];
+
+let secretWord = ""; // The word to guess
+let currentRow = 0;
+
+// DOM Elements
+const grid = document.getElementById("grid");
+const guessInput = document.getElementById("guess");
+const submitButton = document.getElementById("submit");
+const message = document.getElementById("message");
+const splashScreen = document.getElementById("splash-screen");
+const startButton = document.getElementById("start-button");
+const gameContainer = document.getElementById("game-container");
+const endScreen = document.getElementById("end-screen");
+const endMessage = document.getElementById("end-message");
+const endImage = document.getElementById("end-image");
+const playAgain = document.getElementById("play-again");
+
+// Sound Effects
+const backgroundMusic = document.getElementById("background-music");
+const winSound = document.getElementById("win-sound");
+const loseSound = document.getElementById("lose-sound");
+
+// Functions
+function startGame() {
+  secretWord = words[Math.floor(Math.random() * words.length)];
+  guessInput.setAttribute("maxlength", secretWord.length);
+  initializeGrid(secretWord.length);
+  splashScreen.style.display = "none";
+  gameContainer.style.display = "block";
+  backgroundMusic.play();
+}
+
+function initializeGrid(length) {
+  grid.innerHTML = ""; 
+  for (let i = 0; i < 6 * length; i++) {
+    const cell = document.createElement("div");
+    cell.classList.add("cell");
+    grid.appendChild(cell);
+  }
+  currentRow = 0;
+}
+
+submitButton.addEventListener("click", () => {
+  const guess = guessInput.value.toUpperCase();
+  if (guess.length !== secretWord.length) {
+    message.textContent = `Please enter a ${secretWord.length}-letter word.`;
+    return;
+  }
+
+  const rowStart = currentRow * secretWord.length;
+  let correct = 0;
+
+  for (let i = 0; i < secretWord.length; i++) {
+    const cell = grid.children[rowStart + i];
+    cell.textContent = guess[i];
+    if (guess[i] === secretWord[i]) {
+      cell.classList.add("green");
+      correct++;
+    } else if (secretWord.includes(guess[i])) {
+      cell.classList.add("white");
+    } else {
+      cell.classList.add("red");
+    }
+  }
+
+  if (correct === secretWord.length) {
+    endGame(true);
+  } else {
+    currentRow++;
+    if (currentRow === 6) endGame(false);
+  }
+  guessInput.value = "";
+});
+
+function endGame(won) {
+  gameContainer.style.display = "none";
+  endScreen.style.display = "block";
+  if (won) {
+    endMessage.textContent = "🎉 Congratulations! You won! 🎁";
+    winSound.play();
+  } else {
+    endMessage.textContent = `🎅 Better Luck Next Time! The word was ${secretWord}.`;
+    loseSound.play();
+  }
+}
+
+// Restart Game
+playAgain.addEventListener("click", () => {
+  endScreen.style.display = "none";
+  splashScreen.style.display = "block";
+  backgroundMusic.pause();
+  backgroundMusic.currentTime = 0;
+  winSound.pause();
+  winSound.currentTime = 0;
+  loseSound.pause();
+  loseSound.currentTime = 0;
+});
+
+// Start Button
+startButton.addEventListener("click", startGame);
+

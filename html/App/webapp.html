@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Christmas Wordle</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Splash Screen -->
+  <div id="splash-screen">
+    <h1>🎄 Welcome to Christmas Wordle! 🎄</h1>
+    <p>
+      To play, type a 5 letter Christmas-themed word.<br>
+      - Green: Correct letter and correct spot.<br>
+      - White: Correct letter and incorrect spot.<br>
+      - Red: Incorrect letter and incorrect spot.<br><br>
+      Good luck and Merry Christmas!
+    </p>
+    <button id="start-button">Click to Start</button>
+  </div>
+
+  <!-- Game Container -->
+  <div id="game-container" style="display: none;">
+    <h1>Christmas Wordle 🎅</h1>
+    <div id="grid"></div>
+    <input type="text" id="guess" placeholder="Enter your guess">
+    <button id="submit">Submit</button>
+    <p id="message"></p>
+  </div>
+
+  <!-- End Screen -->
+  <div id="end-screen">
+    <h2 id="end-message"></h2>
+    <button id="play-again">Play Again</button>
+    <a href="../scratchpage.html" style="color: white;" > Back to Previous Page </a>
+  </div>
+  <div id="end-screen" style="display: none;">
+    <h1 id="end-message"></h1>
+    <button id="play-again">Play Again</button>
+  </div>
+
+  <!-- Background Music -->
+  <audio id="background-music" loop>
+    <source src="Sounds/ES_A Wishful Night - Martin Landstrom.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Sound Effects -->
+  <audio id="win-sound">
+    <source src="Sounds/ES_Concert Hall, Large Crowds, Applause - Epidemic Sound.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="lose-sound">
+    <source src="Sounds/ES_Retro, Lose, Negative 01 - Epidemic Sound.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="js"></script>
+</body>
+</html>
+
+
+

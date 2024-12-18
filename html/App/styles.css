@@ -1,0 +1,88 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  background: url('images/winter_background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+/* Splash Screen */
+#splash-screen, #end-screen {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 30px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  text-align: center;
+}
+
+#splash-screen p, #end-screen h1 {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #28a745;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+/* Game Grid */
+#grid {
+  display: grid;
+  grid-template-columns: repeat(5, 50px);
+  gap: 10px;
+  margin: 20px auto;
+  justify-content: center;
+}
+
+.cell {
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 1.5rem;
+  text-align: center;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+}
+
+.cell.green { background-color: green; color: white; }
+.cell.red { background-color: red; color: white; }
+.cell.white { background-color: white; color: black; }
+
+#end-image {
+  width: 200px;
+  margin: 20px 0;
+}
+#visit-page {
+  margin-top: 10px;
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: none;
+}
+
+#visit-page:hover {
+  background-color: #0056b3;
+}
+
+
